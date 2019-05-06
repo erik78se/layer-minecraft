@@ -9,7 +9,7 @@ You have to download the [Server jar] first, which when you attach as a resource
 
 * Deploy with the server jar as a juju resource:
 
-```
+```bash
 juju deploy cs:~erik-lonroth/minecraft-server --resource server-jar=minecraft_server.1.14.jar
 
 juju expose minecraft-server
@@ -22,7 +22,7 @@ The charm sets up a 'screen' session named 'minecraft' as the user minecraft.
 You can attach to this at any time to operate the server.
 
 For example:
-```
+```bash
 juju ssh minecraft-server/0
 
 sudo -u minecraft screen -R minecraft
@@ -33,7 +33,7 @@ sudo -u minecraft screen -R minecraft
 
 # Configuration
 You can set gamemode and server-port like this:
-```
+```bash
 juju config minecraft-server gamemode='creative'
 
 juju config minecraft-server server-port=12345
