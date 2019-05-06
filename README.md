@@ -1,19 +1,38 @@
 # Overview
+[Minecraft] is the ever so popular game. This charm deploys a stand alone minecraft server for you.
+
+You have to download the [Server jar] first, which when you attach as a resource.
 
 # Usage
 
-Simply deploy with an attached official minecraft [Server jar] as a juju resource:
+* Start by downloading the official [Server jar].
+
+* Deploy with the server jar as a juju resource:
 
 ```
-juju deploy /tmp/charm-builds/minecraft-server --resource server-jar=minecraft_server.1.14.jar
+juju deploy cs:~erik-lonroth/minecraft-server --resource server-jar=minecraft_server.1.14.jar
 
 juju expose minecraft-server
 ```
 
 The server runs default on port 25565 in survival mode.
 
+# Operating the server
+The charm sets up a 'screen' session named 'minecraft' as the user minecraft. 
+You can attach to this at any time to operate the server.
+
+For example:
+```
+juju ssh minecraft-server/0
+
+sudo -u minecraft screen -R minecraft
+
+# ctrl-a d (Gets you out)
+```
+
+
 # Configuration
-You can set gamemode and server-port like:
+You can set gamemode and server-port like this:
 ```
 juju config minecraft-server gamemode='creative'
 
