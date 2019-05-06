@@ -1,0 +1,16 @@
+name: minecraft-server
+summary: A standalone minecraft server
+maintainer: Erik Lönroth <erik.lonroth@gmail.com>
+description: |
+  A minecraft server. You need to provide the minecraft .jar file as a resource.
+tags:
+  - social
+subordinate: false
+resources:
+  server-jar:
+    type: file
+    filename: "minecraft_server.jar"
+    description: "The minecraft server jar"
+series: 
+  - bionic
+  - disco

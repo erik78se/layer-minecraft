@@ -1,0 +1,9 @@
+options:
+  gamemode:
+    type: string
+    default: "survival"
+    description: "survival|creative"
+  server-port:
+    type: int
+    default: 25565
+    description: "server-port"
