@@ -1,11 +1,11 @@
 # Overview
 [Minecraft] is the ever so popular game. This charm deploys a stand alone minecraft server for you.
 
-You have to download the [Server jar] first, which when you attach as a resource.
+You have to download the [server jar] first, which when you attach as a resource.
 
 # Usage
 
-* Start by downloading the official [Server jar].
+* Start by downloading the official [server jar].
 
 * Deploy with the server jar as a juju resource:
 
@@ -16,6 +16,14 @@ juju expose minecraft-server
 ```
 
 The server runs default on port 25565 in survival mode.
+
+# Configuration
+You can set gamemode and server-port like this:
+```bash
+juju config minecraft-server gamemode='creative'
+
+juju config minecraft-server server-port=12345
+```
 
 # Operating the server
 The charm sets up a 'screen' session named 'minecraft' as the user minecraft. 
@@ -30,15 +38,6 @@ sudo -u minecraft screen -R minecraft
 # ctrl-a d (Gets you out)
 ```
 
-
-# Configuration
-You can set gamemode and server-port like this:
-```bash
-juju config minecraft-server gamemode='creative'
-
-juju config minecraft-server server-port=12345
-```
-
 # Contact Information
 Erik Lönroth <erik.lonroth@gmail.com>
 
@@ -49,4 +48,4 @@ Erik Lönroth <erik.lonroth@gmail.com>
 
 [Minecraft]: https://www.minecraft.net
 [Erik]: http://eriklonroth@wordpress.com
-[Server jar]: https://www.minecraft.net/sv-se/download/server/
+[server jar]: https://www.minecraft.net/sv-se/download/server/
