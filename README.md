@@ -1,7 +1,9 @@
 # Overview
 [Minecraft] is the ever so popular game. This charm deploys a stand alone minecraft server for you.
 
-You have to download the [server jar] first, which when you attach as a resource.
+You have to download the [server jar] first, which you attach as a resource.
+
+The server needs about 2GB ram and 2 cpus to be happy (might need more).
 
 # Usage
 
@@ -10,19 +12,24 @@ You have to download the [server jar] first, which when you attach as a resource
 * Deploy with the server jar as a juju resource:
 
 ```bash
-juju deploy cs:~erik-lonroth/minecraft-server --resource server-jar=minecraft_server.1.14.jar
+juju deploy cs:~erik-lonroth/minecraft-server --constraints "mem=2G cores=2" --resource server-jar=minecraft_server.1.14.jar
 
 juju expose minecraft-server
+```
+
+You can attach a server-jar after deploy also with [juju attach-resource] if you like to upgrade later for example.
+```bash
+juju attach-resource minecraft-server server-jar=minecraft_server.1.14.jar
 ```
 
 The server runs default on port 25565 in survival mode.
 
 # Configuration
-You can set gamemode and server-port like this:
-```bash
-juju config minecraft-server gamemode='creative'
+All configuration changes triggers a server restart.
 
-juju config minecraft-server server-port=12345
+Example, set gamemode and server-port like this:
+```bash
+juju config minecraft-server gamemode='creative' server-port=12345
 ```
 
 # Operating the server
@@ -49,3 +56,4 @@ Erik Lönroth <erik.lonroth@gmail.com>
 [Minecraft]: https://www.minecraft.net
 [Erik]: http://eriklonroth@wordpress.com
 [server jar]: https://www.minecraft.net/sv-se/download/server/
+[juju attach-resource]: https://docs.jujucharms.com/2.5/en/charms-resources

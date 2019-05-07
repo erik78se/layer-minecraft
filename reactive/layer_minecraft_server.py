@@ -94,7 +94,7 @@ def statusupdate():
     if service_running('minecraft'):
         status_set('active', "Started ({})".format(gamemode))
     else:
-        status_set('wait', 'Not running')
+        status_set('waiting', 'Not running')
 
 
 @when_all('config.changed', 'minecraft.started')
@@ -124,10 +124,7 @@ def render_serverproperties():
            owner='minecraft',
            group='minecraft',
            perms=0o755,
-           context={
-               'gamemode': gm,
-               'server_port': sp
-           })
+           context=config())
     
     log("server.properties rendered.")
 
