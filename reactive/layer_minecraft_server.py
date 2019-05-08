@@ -139,14 +139,12 @@ def render_systemd():
     
     serverjar = resource_get('server-jar')
 
-    if serverjar:
-        render(source='minecraft.service',
-               target='/etc/systemd/system/minecraft.service',
-	       owner='root',
-               perms=0o775,
-	       context={
-                   'server_jar': serverjar,
-               })
-        log("systemd unitfile rendered.")
-    else:
-        log("Serverjar not found.")
+    render(source='minecraft.service',
+           target='/etc/systemd/system/minecraft.service',
+	   owner='root',
+           perms=0o775,
+	   context={
+               'server_jar': serverjar,
+           })
+
+    log("systemd unitfile rendered.")

@@ -49,7 +49,9 @@ sudo -u minecraft screen -R minecraft
 
 # Contact & Attribution
 Erik Lönroth <erik.lonroth@gmail.com> - author of the charm
+
 Nathan Adams at Mojang for the mcstatus code. <dinnerbone+github@dinnerbone.com>
+
 All Minecraft developers for a great game!
 
 
