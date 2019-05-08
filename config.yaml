@@ -39,3 +39,11 @@
     "default": !!bool "false"
     "type": "boolean"
     "description": "Allow players to fly, true or false"
+  "enable_query":
+    "default": !!bool "true"
+    "type": "boolean"
+    "description": "Allow quering the server, true or false"
+  "query_port":
+    "default": !!int "25566"
+    "type": "int"
+    "description": "Port for which Minecraft can be queried"

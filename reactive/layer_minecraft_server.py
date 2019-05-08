@@ -15,6 +15,8 @@ from charmhelpers.core.host import (
     service_start,
 )
 
+from mcstatus import MinecraftServer
+
 MINECRAFT_HOME = Path('/opt/minecraft')
 
 @when_not('minecraft.installed')
@@ -89,10 +91,13 @@ def render_eula():
 @hook('update-status')
 def statusupdate():
 
+    mcs = MinecraftServer("127.0.0.1", int(config('server-port')) )
+    status = mcs.status()
+    
     gamemode = config('gamemode')
 
     if service_running('minecraft'):
-        status_set('active', "Started ({})".format(gamemode))
+        status_set('active', "{} players online ({})".format(status.players.online,gamemode))
     else:
         status_set('waiting', 'Not running')
 

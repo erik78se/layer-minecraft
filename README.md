@@ -24,6 +24,8 @@ juju attach-resource minecraft-server server-jar=minecraft_server.1.14.jar
 
 The server runs default on port 25565 in survival mode.
 
+If you enable the query-port with juju config, you can query the server with [mcstatus]. 
+
 # Configuration
 All configuration changes triggers a server restart.
 
@@ -45,15 +47,20 @@ sudo -u minecraft screen -R minecraft
 # ctrl-a d (Gets you out)
 ```
 
-# Contact Information
-Erik Lönroth <erik.lonroth@gmail.com>
+# Contact & Attribution
+Erik Lönroth <erik.lonroth@gmail.com> - author of the charm
+Nathan Adams at Mojang for the mcstatus code. <dinnerbone+github@dinnerbone.com>
+All Minecraft developers for a great game!
+
 
 ## Upstream Project Name
 
   - Minecraft https://www.minecraft.net
   - Charm code: https://github.com/erik78se/layer-minecraft-server
+  - mcstatus (Gets server status)  https://github.com/Dinnerbone/mcstatus (Apache 2.0)
 
 [Minecraft]: https://www.minecraft.net
 [Erik]: http://eriklonroth@wordpress.com
 [server jar]: https://www.minecraft.net/sv-se/download/server/
 [juju attach-resource]: https://docs.jujucharms.com/2.5/en/charms-resources
+[mcstatus]: https://github.com/Dinnerbone/mcstatus
