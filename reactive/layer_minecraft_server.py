@@ -71,8 +71,8 @@ def start_restart_server():
             status_set('maintenance', 'Restarting...')
             service_restart('minecraft')
             set_flag('minecraft.started')
-            
-        statusupdate()
+
+            statusupdate()
     else:
         status_set('blocked', 'Need server-jar resource.')
 
@@ -91,15 +91,33 @@ def render_eula():
 @hook('update-status')
 def statusupdate():
 
-    mcs = MinecraftServer("127.0.0.1", int(config('server-port')) )
-    status = mcs.status()
+    status = None
     
-    gamemode = config('gamemode')
+    try:
+        
+        mcs = MinecraftServer("127.0.0.1", int(config('server-port')) )
+        
+        status = mcs.status()
+        
+        gamemode = config('gamemode')
 
-    if service_running('minecraft'):
-        status_set('active', "{} players online ({})".format(status.players.online,gamemode))
-    else:
-        status_set('waiting', 'Not running')
+        if service_running('minecraft'):
+            
+            status_set('active', "{} players online ({})".format(status.players.online,gamemode))
+            
+        else:
+            
+            status_set('waiting', 'Not running')
+    
+    except OSError:
+        
+        log("Unable to connect to get server status.")
+        
+    except Exception as e:
+        
+        log(e)
+    
+
 
 
 @when_all('config.changed', 'minecraft.started')
