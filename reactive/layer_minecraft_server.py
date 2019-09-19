@@ -36,11 +36,8 @@ def install_layer_minecraft_server():
 
     render_systemd()
     
-    # Server jar
-    server_jar = resource_get('server-jar')
-
-    symlink(server_jar,'/opt/minecraft/minecraft_server.jar')
-
+    set_serverjar()
+    
     sp.call(["systemctl", "daemon-reload"])
     
     set_flag('minecraft.installed')
@@ -61,20 +58,33 @@ def start_restart_server():
     if sinfo.st_size > 0:
         
         if not service_running('minecraft'):
+            
             log('Starting')
+
             status_set('maintenance', 'Starting...')
+
             service_start('minecraft')
+
+            status_set('active', 'Ready.')
+
             set_flag('minecraft.started')
         
         else:
-            log('Restarting.')
-            status_set('maintenance', 'Restarting...')
-            service_restart('minecraft')
-            set_flag('minecraft.started')
 
-            statusupdate()
+            log('Restarting.')
+
+            status_set('maintenance', 'Restarting...')
+
+            service_restart('minecraft')
+
+            status_set('active', 'Ready.')
+
+            set_flag('minecraft.started')
+            
     else:
+        
         status_set('blocked', 'Need server-jar resource.')
+
 
 
 def render_eula():
@@ -166,3 +176,19 @@ def render_systemd():
            })
 
     log("systemd unitfile rendered.")
+
+
+def set_serverjar():
+    """ Create and update server jar """
+    server_jar = resource_get('server-jar')
+
+    symlink(server_jar,'/opt/minecraft/minecraft_server.jar')
+
+
+    
+@hook('upgrade-charm')
+def upgrade_charm():
+    """ Handle new server jar resource here """
+    set_serverjar()
+
+    clear_flag('minecraft.started')

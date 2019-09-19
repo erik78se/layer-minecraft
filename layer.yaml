@@ -6,3 +6,4 @@ options:
   basic:
     python_packages:
       - mcstatus
+repo: "https://github.com/erik78se/layer-minecraft-server"

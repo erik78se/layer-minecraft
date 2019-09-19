@@ -47,6 +47,13 @@ sudo -u minecraft screen -R minecraft
 # ctrl-a d (Gets you out)
 ```
 
+# Upgrading the server
+Simply attach a new server-jar with juju which will restart the server with the new version.
+
+```bash
+juju attach-resource server-jar="server.jar"
+```
+
 # Contact & Attribution
 Erik Lönroth <erik.lonroth@gmail.com> - author of the charm
 
